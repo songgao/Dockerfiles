@@ -1,0 +1,18 @@
+#!/bin/bash
+
+pacman -Syu --noconfirm mercurial bzr wget curl clang the_silver_searcher zsh tmux cmake
+yaourt -S --noconfirm vim-python2
+
+curl https://go.googlecode.com/files/go1.2.linux-amd64.tar.gz | tar zx -C /root
+go get github.com/songgao/colorgo
+go get github.com/songgao/pingpong
+go get github.com/nsf/gocode
+go get github.com/golang/lint
+go get github.com/bradfitz/goimports
+
+cd $HOME
+mkdir repo && cd repo
+git clone --recursive git://github.com/songgao/.config dot && cd dot
+chmod +x dot.py && ./dot.py install vim tmux git zsh
+
+. $HOME/.vim/bundle/neobundle.vim/bin/neoinstall
